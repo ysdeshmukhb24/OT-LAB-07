@@ -29,9 +29,22 @@ pip install -r requirements.txt
 # quick smoke test (small budgets)
 cd tools && LAB7_QUICK=1 bash run_all.sh
 # rebuild + execute the notebook (full budget: 10,000 evaluations, seeds 0–9)
-python build.py && python exec_nb.py
+python build.py && python exec_nb.py   # also regenerates results/
 ```
 Or upload `notebooks/Lab7_MOO.ipynb` to Google Colab and **Run all**.
 
 ## Setup used
 Budget 10,000 evaluations (P9: 3,000) · seeds 0–9 · metrics: Hypervolume (ref point 1.1 in normalised space), IGD, Spacing.
+
+## Raw results (`results/`)
+Everything behind every table and plot is saved here (written by `src/a14_export.py` at the end of the notebook).
+| Path | Content |
+|---|---|
+| `results/metrics_per_run_seed0.csv` | HV / IGD / Spacing / points / time per (algorithm, problem) run of the implementation log |
+| `results/fronts/` | obtained fronts (`algNN_Pk_objectives.csv`), decision vectors (`*_decision.csv`), reference fronts (`reference_*.csv`) and every per-seed front of Tasks C/D |
+| `results/per_seed/` | per-seed metrics for D.1 (P3, P5), D.2 (P10 M=5), D.3 (P8 TSP), C.3 sensitivity (MOEA/D T, MOMA p_ls) |
+| `results/D4_P4_front_points_risk_return.csv` | the 20 front points ranked by TOPSIS/VIKOR |
+| `results/study_numbers.json` | numbers measured in the problem studies used as evidence in Task B/E |
+| `results/tables/` | every table printed in the notebook as CSV (named by notebook cell) |
+| `results/figures/` | every plot in the notebook as PNG (named by notebook cell) |
+
